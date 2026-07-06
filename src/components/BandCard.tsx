@@ -182,6 +182,8 @@ function Band({
   const cardTexture = useTexture('/assets/final_card.jpeg?v=card7');
   cardTexture.flipY = false;
 
+  const fallbackMaterial = new THREE.MeshBasicMaterial({ color: 'gray' });
+
   useLayoutEffect(() => {
     if (materials.base) {
       materials.base.map = cardTexture;
@@ -500,7 +502,8 @@ function Band({
                 geometry={
                   nodes.clip.geometry
                 }
-                material={materials.metal}
+                material={materials.metal || fallbackMaterial}
+                material-roughness={0.3}
               />
             )}
 
@@ -509,7 +512,7 @@ function Band({
                 geometry={
                   nodes.clamp.geometry
                 }
-                material={materials.metal}
+                material={materials.metal || fallbackMaterial}
               />
             )}
           </group>
