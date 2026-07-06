@@ -3,7 +3,8 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const BandCard = lazy(() => import("./BandCard"));
 
-export default function AboutSection() {
+
+export default function AboutSection({ onOpenAboutMe }) {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.4 });
   const [showCard, setShowCard] = useState(false);
@@ -153,11 +154,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 80 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1.1, delay: 1.4 }}
-            onClick={() =>
-              document.getElementById("showcase")?.scrollIntoView({
-                behavior: "smooth",
-              })
-            }
+            onClick={onOpenAboutMe}
             className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 text-xs uppercase font-bold hover:bg-white hover:text-black rounded-full transition"
           >
             About Me

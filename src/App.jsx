@@ -6,6 +6,7 @@ import heroEye from "@/assets/hero-eye.png";
 
 import WelcomeScreen from "@/components/WelcomeScreen";
 import AboutSection from "@/components/AboutSection";
+import AboutMeSection from "@/components/AboutMeSection";
 import Showcase from "@/components/Showcase";
 import ContactSection from "@/components/ContactSection";
 
@@ -15,6 +16,7 @@ export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [time, setTime] = useState("");
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [showAboutMe, setShowAboutMe] = useState(false);
 
   const text = "KRISH";
   const [displayed, setDisplayed] = useState("");
@@ -304,8 +306,13 @@ export default function App() {
       `}</style>
 
       <section id="about">
-        <AboutSection />
+        <AboutSection onOpenAboutMe={() => setShowAboutMe(true)} />
       </section>
+      
+      <AnimatePresence>
+        {showAboutMe && <AboutMeSection onClose={() => setShowAboutMe(false)} />}
+      </AnimatePresence>
+
       <section id="showcase">
         <Showcase />
       </section>
