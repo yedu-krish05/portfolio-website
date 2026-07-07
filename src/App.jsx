@@ -78,9 +78,11 @@ export default function App() {
 
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 backdrop-blur-xl bg-black/20 border-b border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/20 to-white/5 border border-white/20 flex items-center justify-center text-xs font-bold tracking-wider">
-            YK
-          </div>
+          <img 
+            src="/favicon.png" 
+            alt="Logo" 
+            className="w-8 h-8 rounded-full border border-white/20 object-cover"
+          />
 
           <span className="text-[10px] md:text-xs tracking-[0.3em] text-white/70 uppercase font-medium">
             KRISH · <a href="https://teamx-developers.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">TEAMX</a>
