@@ -79,7 +79,7 @@ export default function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 backdrop-blur-xl bg-black/20 border-b border-white/10">
         <div className="flex items-center gap-3">
           <img 
-            src="/fevicon1.png" 
+            src="/favicon1.png" 
             alt="Logo" 
             className="w-8 h-8 rounded-full border border-white/20 object-cover"
           />
