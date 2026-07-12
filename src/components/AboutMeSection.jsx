@@ -1,10 +1,13 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { X, Download } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { X, Download, FileText } from "lucide-react";
+import ResumeModal from "./ResumeModal";
 
 export default function AboutMeSection({ onClose }) {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.3 });
+  const [showResume, setShowResume] = useState(false);
+  const [autoPrint, setAutoPrint] = useState(false);
 
   return (
     <motion.section
@@ -116,20 +119,34 @@ export default function AboutMeSection({ onClose }) {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-12"
+            className="mt-12 flex flex-col md:flex-row items-start md:items-center gap-4"
           >
-            <a 
-              href="/resume.pdf" 
-              download="Krish_Resume.pdf"
+            <button 
+              onClick={() => { setShowResume(true); setAutoPrint(true); }}
               className="inline-flex items-center gap-3 border border-white/30 text-white px-8 py-4 text-xs tracking-[0.25em] uppercase font-bold hover:bg-white hover:text-black transition-all duration-300 rounded-full"
             >
               Download Resume
               <Download size={16} />
-            </a>
+            </button>
+            
+            <button
+              onClick={() => { setShowResume(true); setAutoPrint(false); }}
+              className="inline-flex items-center gap-2 border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 px-6 py-4 text-xs uppercase font-bold hover:bg-cyan-500 hover:text-black rounded-full transition shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] relative z-20"
+            >
+              <FileText size={16} />
+              Interactive Resume
+            </button>
           </motion.div>
         </div>
         </div>
       </div>
+
+      {/* INTERACTIVE RESUME MODAL */}
+      <AnimatePresence>
+        {showResume && (
+          <ResumeModal autoPrint={autoPrint} onClose={() => { setShowResume(false); setAutoPrint(false); }} />
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }

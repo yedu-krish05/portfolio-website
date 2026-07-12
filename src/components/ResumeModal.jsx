@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { X, Download, Briefcase, GraduationCap, Code2, User, Award, FolderGit2, Languages, Info } from "lucide-react";
 import { projects } from "./Showcase";
 
-export default function ResumeModal({ onClose }) {
+export default function ResumeModal({ onClose, autoPrint = false }) {
   // Prevent scrolling on the body when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -11,6 +11,15 @@ export default function ResumeModal({ onClose }) {
       document.body.style.overflow = "unset";
     };
   }, []);
+
+  useEffect(() => {
+    if (autoPrint) {
+      const timer = setTimeout(() => {
+        window.print();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [autoPrint]);
 
   const downloadPdf = () => {
     window.print();
@@ -23,7 +32,7 @@ export default function ResumeModal({ onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 bg-black/80 backdrop-blur-md"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 md:p-12 bg-black/80 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
@@ -294,15 +303,21 @@ export default function ResumeModal({ onClose }) {
             display: none !important;
           }
           
-          #about-section {
+          #about-section,
+          #about-me {
             display: block !important;
             margin: 0 !important;
             padding: 0 !important;
             min-height: 0 !important;
+            position: static !important;
+            background: transparent !important;
           }
 
-          /* Hide the text content of the about section, leaving only the modal */
-          #about-section > div:not(.fixed) {
+          /* Hide the text content of the about sections, leaving only the modal */
+          #about-section > div:not(.fixed),
+          #about-section > button,
+          #about-me > div:not(.fixed),
+          #about-me > button {
             display: none !important;
           }
           

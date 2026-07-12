@@ -39,7 +39,7 @@ export default function WelcomeScreen() {
           duration: 1.2,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="relative text-center text-white flex flex-col items-center gap-5 w-full max-w-[340px]"
+        className="relative text-center text-white flex flex-col items-center gap-5 w-full max-w-[400px]"
       >
         {/* Icons */}
         <motion.div
@@ -138,10 +138,26 @@ export default function WelcomeScreen() {
             delay: 1.8,
             duration: 1,
           }}
-          className="text-sm text-white/60 tracking-wide"
+          className="text-sm text-white/60 tracking-wide mb-2"
         >
           Building Apps That Feel Alive.
         </motion.p>
+
+        {/* Small Motivational Quote */}
+        <div className="flex flex-col items-center mt-2 px-2">
+          <h2 className="font-[Poppins] text-[10px] md:text-xs font-medium leading-relaxed tracking-widest text-cyan-400/80 text-center uppercase">
+            {"EVERYTHING HAPPENS FOR A REASON. STAY POSITIVE AND HUMBLE. GOD HAS A PLAN. REMEMBER WHATEVER HAPPENS, HAPPENS.".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.1, delay: 2 + index * 0.02 }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </h2>
+        </div>
 
         {/* Website Badge */}
         <motion.div
