@@ -1,4 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { ExternalLink } from "lucide-react";
+import CertificateShowcase from "./CertificateShowcase";
 
 const techStack = [
   { name: "Dart", icon: "https://cdn.simpleicons.org/dart/0175C2", color: "#0175C2" },
@@ -23,26 +25,170 @@ const techStack = [
 
 const projects = [
   {
-    title: "Restaurant Billing Software",
-    tech: "Flutter + Firebase",
-    description:
-      "A complete restaurant management and billing application with table management, order tracking, menu customization, and real-time billing with receipt generation.",
-    github: "https://github.com/yedu-krish05",
+    "_id": "6a4b6d3e4b38685ab290f701",
+    "projectName": "MuzicX",
+    "description": "A feature-rich music streaming app with YouTube Music integration, offline playback, and advanced audio customization.",
+    "category": "Media",
+    "technologies": ["Flutter", "Dart", "Streaming API", "Android"],
+    "image": "/muzicx-logo.jpg",
+    "github": "",
+    "liveUrl": "https://muzic-x.vercel.app/",
+    "completionDate": "2026-04-10",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
   },
   {
-    title: "Temple Bill Software",
-    tech: "Flutter + Firebase",
-    description:
-      "Digital billing and management solution for temples — handles donations, puja bookings, receipt generation, and financial record keeping with offline support.",
-    github: "https://github.com/yedu-krish05",
+    "_id": "6a4b6d3e4b38685ab290f702",
+    "projectName": "SoraDBlite",
+    "description": "A PyMongo-compatible database interface with simplified syntax while maintaining familiar MongoDB operations.",
+    "category": "Database & API",
+    "technologies": ["Python", "Pymongo", "MongoDB", "Database"],
+    "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80",
+    "github": "https://github.com/MrTG-CodeBot/SoraDBlite",
+    "liveUrl": "",
+    "completionDate": "2026-03-15",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
   },
   {
-    title: "Institution Broker Management App",
-    tech: "Flutter + Dart + Firebase",
-    description:
-      "A broker management application for educational institutions, streamlining student enrollment, commission tracking, and broker relationship management.",
-    github: "https://github.com/yedu-krish05",
+    "_id": "6a4b6d3e4b38685ab290f703",
+    "projectName": "CineVerse",
+    "description": "A modern Flutter movie and TV series tracking app with comprehensive social features, Firebase integration, and real-time updates.",
+    "category": "Media",
+    "technologies": ["Flutter", "Firebase", "Social API", "Entertainment"],
+    "image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-05-20",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
   },
+  {
+    "_id": "6a4b6d3e4b38685ab290f704",
+    "projectName": "Temple Billing App",
+    "description": "An offline billing and ledger management system designed for Kerala temples.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "SQLite FFI", "Transliteration", "Manglish"],
+    "image": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-02-10",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f705",
+    "projectName": "Restaurant Billing App",
+    "description": "A modern Point-of-Sale (POS) and checkout system optimized for retail shops and restaurants.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "Hive POS", "QR Generator", "POS Layout"],
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-01-22",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f706",
+    "projectName": "Gold Loan App",
+    "description": "A professional ledger tracking system for pawnbrokers, gold-lending services, and credit institutions.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "SQLite", "Pawnbroker API", "Ledger Sheet"],
+    "image": "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-04-05",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f707",
+    "projectName": "Dev Vault",
+    "description": "A vault-secured personal finance, budget, and loan vault manager.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "SQLite", "Biometrics", "Trend Charts"],
+    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-05-02",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f708",
+    "projectName": "TeamX",
+    "description": "A multi-role workspace management and workflow invoice planner.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "Firebase", "Workspace Planner", "Role dashboards"],
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-03-30",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f709",
+    "projectName": "Apexx (Institution)",
+    "description": "Enterprise educational resources manager for coaching centers and schools.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "SQLite", "ERP Systems", "WhatsApp Helper"],
+    "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-02-28",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f70a",
+    "projectName": "Muzicx-Lite",
+    "description": "A streamlined, database-free alternative to MuzicX.",
+    "category": "Media",
+    "technologies": ["Flutter", "SQLite Cache", "YT Streams", "FFI Extractor"],
+    "image": "/muzicx-logo.jpg",
+    "github": "https://github.com/MrTG-CodeBot/Muzic-x",
+    "liveUrl": "",
+    "completionDate": "2026-05-15",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "_id": "6a4b6d3e4b38685ab290f70b",
+    "projectName": "Restaurant Bill Counter Token App",
+    "description": "Billing terminal coupled with an active queue token status caller.",
+    "category": "Enterprise",
+    "technologies": ["Flutter", "Firebase RTDB", "Queue System", "Counter Terminal"],
+    "image": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=800&q=80",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-04-18",
+    "status": "completed",
+    "galleryImages": [],
+    "featured": true,
+    "published": true
+  }
 ];
 
 const GithubIcon = () => (
@@ -56,39 +202,74 @@ function ProjectCard({ item }) {
     <div
       className="group relative rounded-2xl border border-white/15 overflow-hidden bg-white/[0.06]
       hover:border-white/25 transition-all duration-500
-      hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-md"
+      hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-md flex flex-col h-full"
       style={{ backdropFilter: "blur(20px)" }}
     >
       {/* Gradient Top Bar */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-cyan-500/60 via-blue-500/60 to-purple-500/60" />
+      <div className="h-1.5 w-full bg-gradient-to-r from-cyan-500/60 via-blue-500/60 to-purple-500/60 shrink-0" />
 
-      <div className="p-6 space-y-4">
+      {/* Optional Image */}
+      {item.image && (
+        <div className="w-full h-48 overflow-hidden border-b border-white/10 shrink-0 bg-black/50">
+          <img 
+            src={item.image} 
+            alt={item.projectName} 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <div className="p-6 space-y-4 flex flex-col flex-1">
         {/* Title */}
         <h3 className="text-lg font-bold text-white group-hover:text-white/90 transition-colors">
-          {item.title}
+          {item.projectName}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-white/50 leading-relaxed line-clamp-3">
+        <p className="text-sm text-white/50 leading-relaxed line-clamp-3 min-h-[60px]">
           {item.description}
         </p>
 
         {/* Bottom row */}
-        <div className="flex items-center justify-between pt-2 border-t border-white/10">
-          <span className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono">
-            {item.tech}
+        <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono flex gap-2 flex-wrap">
+            {item.technologies && item.technologies.slice(0, 2).map((tech, idx) => (
+              <span key={idx} className="border border-white/10 px-2 py-0.5 rounded bg-white/5">{tech}</span>
+            ))}
           </span>
-          <a
-            href={item.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-8 h-8 rounded-full
-            bg-white/5 border border-white/15 text-white/60
-            hover:bg-white/10 hover:text-white hover:border-white/30
-            transition-all duration-200 active:scale-95"
-          >
-            <GithubIcon />
-          </a>
+          
+          <div className="flex items-center gap-2 shrink-0">
+            {item.github && (
+              <a
+                href={item.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-8 h-8 rounded-full
+                bg-white/5 border border-white/15 text-white/60
+                hover:bg-white/10 hover:text-white hover:border-white/30
+                transition-all duration-200 active:scale-95"
+                title="View Source"
+              >
+                <GithubIcon />
+              </a>
+            )}
+            
+            {item.liveUrl && (
+              <a
+                href={item.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-8 h-8 rounded-full
+                bg-white/5 border border-white/15 text-white/60
+                hover:bg-white/10 hover:text-white hover:border-white/30
+                transition-all duration-200 active:scale-95"
+                title="View Live Site"
+              >
+                <ExternalLink size={14} />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -337,6 +518,7 @@ function TechGrid() {
 
 const tabs = [
   { id: "projects", label: "Projects" },
+  { id: "certificates", label: "Certificates" },
   { id: "tech", label: "Tech Stack" },
 ];
 
@@ -370,7 +552,11 @@ export default function ShowcaseSection() {
   };
 
   const activePillLeft =
-    active === "projects" ? "8px" : "calc(50% + 0px)";
+    active === "projects"
+      ? "6px"
+      : active === "certificates"
+      ? "calc(33.333% + 2px)"
+      : "calc(66.666% - 2px)";
 
   return (
     <section className="relative w-full min-h-[85vh] md:min-h-screen bg-black overflow-hidden text-white px-4 sm:px-8 md:px-16 lg:px-24 py-0 md:py-12 -mt-16 sm:mt-0 md:mt-12">
@@ -410,7 +596,7 @@ export default function ShowcaseSection() {
           <div
             className="absolute top-1.5 bottom-1.5 rounded-full bg-white/20 border border-white/40 transition-[left] duration-300 ease-out shadow-xl shadow-white/10"
             style={{
-              width: "calc(50% - 4px)",
+              width: "calc(33.333% - 4px)",
               left: activePillLeft,
               backdropFilter: "blur(15px)",
             }}
@@ -442,18 +628,29 @@ export default function ShowcaseSection() {
           onTouchEnd={handleTouchEnd}
         >
           {active === "projects" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-              {projects.map((item, i) => (
-                <div
-                  key={i}
-                  className="opacity-0"
-                  style={{
-                    animation: `fadeSlideUp 0.5s ease ${i * 0.08}s forwards`,
-                  }}
-                >
-                  <ProjectCard item={item} />
-                </div>
-              ))}
+            <div className="w-full">
+              <div className="w-full flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar">
+                {projects.map((item, i) => (
+                  <div
+                    key={i}
+                    className="opacity-0 shrink-0 w-[85vw] sm:w-[340px] snap-center"
+                    style={{
+                      animation: `fadeSlideUp 0.5s ease ${i * 0.1}s forwards`,
+                    }}
+                  >
+                    <ProjectCard item={item} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {active === "certificates" && (
+            <div
+              className="opacity-0 w-full"
+              style={{ animation: "fadeSlideUp 0.5s ease forwards" }}
+            >
+              <CertificateShowcase />
             </div>
           )}
 
@@ -488,6 +685,13 @@ export default function ShowcaseSection() {
         @keyframes lineMove {
           from { transform: translateX(-100%); }
           to   { transform: translateX(100%); }
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </section>

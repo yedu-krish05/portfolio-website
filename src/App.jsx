@@ -125,6 +125,17 @@ export default function App() {
           <li
             onClick={() =>
               document
+                .getElementById("showcase")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Certificates
+          </li>
+
+          <li
+            onClick={() =>
+              document
                 .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
@@ -189,6 +200,18 @@ export default function App() {
             className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full"
           >
             Showcase
+          </button>
+
+          <button
+            onClick={() => {
+              document
+                .getElementById("showcase")
+                ?.scrollIntoView({ behavior: "smooth" });
+              setMobileMenu(false);
+            }}
+            className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full"
+          >
+            Certificates
           </button>
 
           <button
