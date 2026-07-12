@@ -11,6 +11,8 @@ import Experience from "@/components/Experience";
 import Showcase from "@/components/Showcase";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import Hero3DBackground from "@/components/Hero3DBackground";
+import SnakeGame from "@/components/SnakeGame";
 
 const logos = ["KRISH", "TEAMX", "MOBILE", "DEVELOPER", "FLUTTER", "FIREBASE"];
 
@@ -19,6 +21,8 @@ export default function App() {
   const [time, setTime] = useState("");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showAboutMe, setShowAboutMe] = useState(false);
+  const [showGame, setShowGame] = useState(false);
+  const [secretClickCount, setSecretClickCount] = useState(0);
 
   const text = "KRISH";
   const [displayed, setDisplayed] = useState("");
@@ -36,7 +40,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (showWelcome || mobileMenu) {
+    if (showWelcome || mobileMenu || showGame) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -45,7 +49,16 @@ export default function App() {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [showWelcome, mobileMenu]);
+  }, [showWelcome, mobileMenu, showGame]);
+
+  const handleLogoClick = () => {
+    setSecretClickCount(prev => prev + 1);
+    // Optional: Reset count if they don't click 5 times quickly, but simple is fine for now
+    if (secretClickCount + 1 >= 5) {
+      setShowGame(true);
+      setSecretClickCount(0);
+    }
+  };
 
   useEffect(() => {
     const updateTime = () => {
@@ -75,15 +88,17 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white selection:bg-cyan-500/30 font-sans overflow-x-hidden">
       <AnimatePresence>{showWelcome && <WelcomeScreen />}</AnimatePresence>
+      <AnimatePresence>{showGame && <SnakeGame onClose={() => setShowGame(false)} />}</AnimatePresence>
 
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 backdrop-blur-xl bg-black/20 border-b border-white/10">
         <div className="flex items-center gap-3">
           <img 
             src="/favicon1.png" 
             alt="Logo" 
-            className="w-8 h-8 rounded-full border border-white/20 object-cover"
+            onClick={handleLogoClick}
+            className="w-8 h-8 rounded-full border border-white/20 object-cover cursor-pointer active:scale-95 transition-transform"
           />
 
           <span className="text-[10px] md:text-xs tracking-[0.3em] text-white/70 uppercase font-medium">
@@ -255,7 +270,9 @@ export default function App() {
         id="Home"
         className="relative w-full h-screen min-h-[640px] overflow-hidden bg-black"
       >
-        <div className="absolute inset-0 flex items-center justify-center">
+        <Hero3DBackground />
+        
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <img
             src={heroEye}
             alt="Hero"

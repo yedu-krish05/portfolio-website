@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Briefcase, GraduationCap, Award } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const experiences = [
   {
@@ -32,6 +33,15 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <section id="experience" className="relative w-full bg-black overflow-hidden text-white px-4 sm:px-8 md:px-16 lg:px-24 py-16 md:py-24 border-t border-white/5">
       <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
@@ -64,26 +74,39 @@ export default function Experience() {
         </div>
 
         {/* Timeline */}
-        <div className="relative w-full">
-          {/* Vertical Line */}
+        <div ref={containerRef} className="relative w-full pb-10">
+          {/* Vertical Line Base */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
+          
+          {/* Glowing Animated Line */}
+          <motion.div 
+            className="absolute left-8 md:left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 to-blue-500 shadow-[0_0_15px_#06b6d4] -translate-x-1/2" 
+            style={{ height: lineHeight }} 
+          />
 
           {experiences.map((exp, index) => {
             const isEven = index % 2 === 0;
             return (
-              <div
+              <motion.div
                 key={exp.id}
-                className="relative flex items-center justify-between md:justify-normal w-full mb-12 opacity-0"
-                style={{
-                  animation: `fadeSlideUp 0.8s ease ${0.2 + (index * 0.2)}s forwards`,
-                }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+                className="relative flex items-center justify-between md:justify-normal w-full mb-12"
               >
                 {/* Timeline Dot/Icon */}
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-white/20 z-10 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
+                  className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-white/20 z-10 shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+                >
                   <div className={`flex items-center justify-center w-full h-full rounded-full bg-gradient-to-br ${exp.color} bg-opacity-20 text-white`}>
                     {exp.icon}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Content Box */}
                 <div className={`w-full pl-20 md:pl-0 md:w-1/2 ${isEven ? "md:pr-16 md:text-right" : "md:pl-16 md:ml-auto"}`}>
@@ -98,7 +121,7 @@ export default function Experience() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
