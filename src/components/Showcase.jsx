@@ -537,21 +537,6 @@ export default function ShowcaseSection() {
     [active]
   );
 
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) < 50) return;
-    const order = tabs.map((t) => t.id);
-    const idx = order.indexOf(active);
-    if (dx < 0 && idx < order.length - 1) switchTab(order[idx + 1]);
-    if (dx > 0 && idx > 0) switchTab(order[idx - 1]);
-    touchStartX.current = null;
-  };
-
   const activePillLeft =
     active === "projects"
       ? "6px"
@@ -625,8 +610,6 @@ export default function ShowcaseSection() {
         <div
           key={animKey}
           className="w-full opacity-0 animate-[contentIn_0.5s_cubic-bezier(0.22,1,0.36,1)_forwards]"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
         >
           {active === "projects" && (
             <div className="w-full">
