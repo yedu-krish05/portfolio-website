@@ -7,8 +7,10 @@ import heroEye from "@/assets/hero-eye.png";
 import WelcomeScreen from "@/components/WelcomeScreen";
 import AboutSection from "@/components/AboutSection";
 import AboutMeSection from "@/components/AboutMeSection";
+import Experience from "@/components/Experience";
 import Showcase from "@/components/Showcase";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const logos = ["KRISH", "TEAMX", "MOBILE", "DEVELOPER", "FLUTTER", "FIREBASE"];
 
@@ -110,6 +112,16 @@ export default function App() {
           >
             About
           </li>
+          <li
+            onClick={() =>
+              document
+                .getElementById("experience")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="relative hover:text-white transition-colors cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Experience
+          </li>
 
           <li
             onClick={() =>
@@ -188,6 +200,17 @@ export default function App() {
             className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full"
           >
             About
+          </button>
+          <button
+            onClick={() => {
+              document
+                .getElementById("experience")
+                ?.scrollIntoView({ behavior: "smooth" });
+              setMobileMenu(false);
+            }}
+            className="relative after:absolute after:left-0 after:-bottom-2 after:h-[1px] after:w-0 after:bg-white after:transition-all hover:after:w-full"
+          >
+            Experience
           </button>
 
           <button
@@ -338,12 +361,18 @@ export default function App() {
         {showAboutMe && <AboutMeSection onClose={() => setShowAboutMe(false)} />}
       </AnimatePresence>
 
+      <section id="experience">
+        <Experience />
+      </section>
+
       <section id="showcase">
         <Showcase />
       </section>
       <section id="contact">
         <ContactSection />
       </section>
+      
+      <Footer />
     </div>
   );
 }

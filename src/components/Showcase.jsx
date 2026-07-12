@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { ExternalLink } from "lucide-react";
+import { GitHubCalendar } from "react-github-calendar";
 import CertificateShowcase from "./CertificateShowcase";
 
 const techStack = [
@@ -23,7 +24,7 @@ const techStack = [
   { name: "GitHub", icon: "https://cdn.simpleicons.org/github/FFFFFF", color: "#FFFFFF" },
 ];
 
-const projects = [
+export const projects = [
   {
     "_id": "6a4b6d3e4b38685ab290f701",
     "projectName": "MuzicX",
@@ -656,10 +657,28 @@ export default function ShowcaseSection() {
 
           {active === "tech" && (
             <div
-              className="opacity-0"
+              className="opacity-0 flex flex-col items-center gap-16 w-full"
               style={{ animation: "fadeSlideUp 0.5s ease forwards" }}
             >
               <TechGrid />
+
+              <div className="w-full p-8 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-md flex flex-col items-center shadow-2xl">
+                <div className="flex items-center gap-3 mb-8 text-white/80">
+                  <GithubIcon />
+                  <h3 className="text-xl font-bold tracking-widest uppercase">GitHub Contributions</h3>
+                </div>
+                <div className="w-full overflow-x-auto pb-4 hide-scrollbar flex justify-center">
+                  <div className="min-w-[700px]">
+                    <GitHubCalendar 
+                      username="yedu-krish05" 
+                      colorScheme="dark"
+                      blockSize={14}
+                      blockMargin={4}
+                      fontSize={12}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

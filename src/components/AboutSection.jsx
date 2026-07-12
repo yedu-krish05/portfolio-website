@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Download, FileText } from "lucide-react";
+import ResumeModal from "./ResumeModal";
 
 const BandCard = lazy(() => import("./BandCard"));
 
@@ -8,6 +10,7 @@ export default function AboutSection({ onOpenAboutMe }) {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.4 });
   const [showCard, setShowCard] = useState(false);
+  const [showResume, setShowResume] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -155,9 +158,21 @@ export default function AboutSection({ onOpenAboutMe }) {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1.1, delay: 1.4 }}
             onClick={onOpenAboutMe}
-            className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 text-xs uppercase font-bold hover:bg-white hover:text-black rounded-full transition"
+            className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 text-xs uppercase font-bold hover:bg-white hover:text-black rounded-full transition z-20 relative"
           >
             About Me
+          </motion.button>
+
+          {/* Open Resume Modal Button */}
+          <motion.button
+            onClick={() => setShowResume(true)}
+            initial={{ opacity: 0, x: 80 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1.1, delay: 1.6 }}
+            className="inline-flex items-center gap-2 border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 px-6 py-3 text-xs uppercase font-bold hover:bg-cyan-500 hover:text-black rounded-full transition shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] relative z-20"
+          >
+            <FileText size={16} />
+            Resume
           </motion.button>
         </div>
       </div>
@@ -176,6 +191,13 @@ export default function AboutSection({ onOpenAboutMe }) {
               <BandCard />
             </Suspense>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* INTERACTIVE RESUME MODAL */}
+      <AnimatePresence>
+        {showResume && (
+          <ResumeModal onClose={() => setShowResume(false)} />
         )}
       </AnimatePresence>
     </motion.section>
