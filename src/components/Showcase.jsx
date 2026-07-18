@@ -26,6 +26,25 @@ const techStack = [
 
 export const projects = [
   {
+    "_id": "6a4b6d3e4b38685ab290f70c",
+    "projectName": "AEGIS AI",
+    "description": "A self-contained, offline-first operating system designed for modern students. Features local NLP document processing and predictive attendance intelligence.",
+    "category": "Education / AI",
+    "technologies": ["Next.js", "React", "TypeScript", "SQLite"],
+    "image": "/assets/aegis-dashboard.png",
+    "github": "",
+    "liveUrl": "",
+    "completionDate": "2026-07-18",
+    "status": "completed",
+    "galleryImages": [
+      "/assets/aegis-dashboard.png",
+      "/assets/aegis-attendance.png",
+      "/assets/aegis-notes-ai.png"
+    ],
+    "featured": true,
+    "published": true
+  },
+  {
     "_id": "6a4b6d3e4b38685ab290f701",
     "projectName": "MuzicX",
     "description": "A feature-rich music streaming app with YouTube Music integration, offline playback, and advanced audio customization.",
